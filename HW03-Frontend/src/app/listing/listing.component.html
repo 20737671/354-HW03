@@ -1,0 +1,40 @@
+<div>
+  <input type="text" [(ngModel)]="filterText" (input)="onFilterTextChanged()" placeholder="Filter products" />
+
+  <table>
+    <thead>
+      <tr>
+        <th (click)="sortProducts('image')">Image</th>
+        <th (click)="sortProducts('name')">Name</th>
+        <th (click)="sortProducts('price')">Price</th>
+        <th (click)="sortProducts('brand')">Brand</th>
+        <th (click)="sortProducts('productType')">Product Type</th>
+        <th (click)="sortProducts('description')">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of filteredProducts | paginate: { itemsPerPage: pageSize, currentPage: currentPage }">
+        <td>{{ product.image }}</td>
+        <td>{{ product.name }}</td>
+           <td>{{ product.price | currency: 'ZAR': 'symbol':'1.2-2' }}</td>
+           <td>{{ product.brand }}</td>
+           <td>{{ product.productType }}</td>
+           <td>{{ product.description }}</td>
+         </tr>
+       </tbody>
+     </table>
+
+     <div>
+       <label>Items per page:</label>
+       <select [(ngModel)]="pageSize" (change)="onPageSizeChanged()">
+         <option *ngFor="let option of pageSizeOptions" [value]="option">{{ option }}</option>
+       </select>
+     </div>
+
+     <pagination-controls
+       [(ngModel)]="currentPage"
+       [itemsPerPage]="pageSize"
+       [totalItems]="totalItems"
+       (pageChange)="onPageChanged($event)"
+     ></pagination-controls>
+   </div>
