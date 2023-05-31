@@ -9,8 +9,19 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { ListingComponent } from './listing/listing.component';
-import { NgxPaginationModule } from 'ngx-pagination';
-import { PaginationControlsComponent } from 'ngx-pagination';
+import { NgxPaginationModule, PaginationControlsDirective } from 'ngx-pagination';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SidebarComponent } from './sidebar-component/sidebar-component.component';
+import { MatToolbarModule } from '@angular/material/toolbar'; // Add this import
+import { MatIconModule } from '@angular/material/icon';
+import { AddProductComponent } from './add-product/add-product.component'; // Import MatIconModule
+
+
+
+
+
 
 
 @NgModule({
@@ -19,7 +30,11 @@ import { PaginationControlsComponent } from 'ngx-pagination';
     LoginComponent,
     RegisterComponent,
     ListingComponent,
-    PaginationControlsComponent
+    SidebarComponent,
+    AddProductComponent,
+    
+    
+   
   ],
   imports: [
     BrowserModule,
@@ -27,7 +42,13 @@ import { PaginationControlsComponent } from 'ngx-pagination';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule, 
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatSidenavModule,
+    MatListModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatIconModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

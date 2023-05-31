@@ -1,9 +1,21 @@
+export interface Brand {
+  brandId: number;
+  name: string;
+}
+
+export interface ProductType {
+  productTypeId: number;
+  name: string;
+}
+
 export interface Product {
-    id: number;
-    image: string;
-    name: string;
-    price: number;
-    brand: string;
-    productType: string;
-    description: string;
-  }
+  productId: number;
+  name: string;
+  price: number;
+  image: string | null;
+  brandId: number;
+  productTypeId: number;
+  description: string;
+  productType?: ProductType;
+  brand?: Brand;
+}

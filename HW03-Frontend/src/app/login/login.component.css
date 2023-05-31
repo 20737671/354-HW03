@@ -1,0 +1,63 @@
+.login-container {
+    margin-top: 100px; /* Adjust the margin value to increase or decrease the gap */
+    width: 300px;
+    margin: 100px auto 0;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+  }
+  
+  /* Rest of the CSS styles remain the same */
+  
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  input[type="email"],
+  input[type="password"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+
+  .register-button {
+    background-color: #ccc;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .register-button:hover {
+    background-color: #999;
+  }
+  

@@ -1,40 +1,115 @@
+
+<div class="container">
+  <!-- Your content goes here -->
+</div>
+
+
+
+
+
+
+
+
 <div>
-  <input type="text" [(ngModel)]="filterText" (input)="onFilterTextChanged()" placeholder="Filter products" />
+
+  <!-- <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" opened="true" class="side-container">
+      <mat-nav-list>
+  
+        <a mat-list-item [routerLink]="'/listing'"> Product listing page </a>
+        <a mat-list-item [routerLink]="'/login'"> login test </a>
+  
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content class="content-container">
+      <div style="height: 88vh;">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container> -->
+
+
+  <app-sidebar-component></app-sidebar-component>
+
+
+  <input type="text" [(ngModel)]="filterText" name="fieldName" ngDefaultControl (input)="onFilterTextChanged()" placeholder="Filter products" />
 
   <table>
     <thead>
       <tr>
         <th (click)="sortProducts('image')">Image</th>
-        <th (click)="sortProducts('name')">Name</th>
-        <th (click)="sortProducts('price')">Price</th>
-        <th (click)="sortProducts('brand')">Brand</th>
-        <th (click)="sortProducts('productType')">Product Type</th>
-        <th (click)="sortProducts('description')">Description</th>
+        <th (click)="sortProducts('name')">
+          Name
+          <span class="sort-indicator" [ngClass]="{'ascending': isSortedAscending('name'), 'descending': isSortedDescending('name')}" *ngIf="sortColumn === 'name'"></span>
+        </th>
+        <th (click)="sortProducts('price')">
+          Price
+          <span class="sort-indicator" [ngClass]="{'ascending': isSortedAscending('price'), 'descending': isSortedDescending('price')}" *ngIf="sortColumn === 'price'"></span>
+        </th>
+        <th (click)="sortProducts('brand')">
+          Brand
+          <span class="sort-indicator" [ngClass]="{'ascending': isSortedAscending('brand'), 'descending': isSortedDescending('brand')}" *ngIf="sortColumn === 'brand'"></span>
+        </th>
+        <th (click)="sortProducts('productType')">
+          Product Type
+          <span class="sort-indicator" [ngClass]="{'ascending': isSortedAscending('productType'), 'descending': isSortedDescending('productType')}" *ngIf="sortColumn === 'productType'"></span>
+        </th>
+        <th (click)="sortProducts('description')">
+          Description
+          <span class="sort-indicator" [ngClass]="{'ascending': isSortedAscending('description'), 'descending': isSortedDescending('description')}" *ngIf="sortColumn === 'description'"></span>
+        </th>
       </tr>
     </thead>
+    
     <tbody>
       <tr *ngFor="let product of filteredProducts | paginate: { itemsPerPage: pageSize, currentPage: currentPage }">
-        <td>{{ product.image }}</td>
+        <td>
+          <img class="product-image" [src]="'data:image/png;base64,' + product.image" alt="Product Image" />
+        </td>
         <td>{{ product.name }}</td>
-           <td>{{ product.price | currency: 'ZAR': 'symbol':'1.2-2' }}</td>
-           <td>{{ product.brand }}</td>
-           <td>{{ product.productType }}</td>
-           <td>{{ product.description }}</td>
-         </tr>
-       </tbody>
-     </table>
+        <td>{{ product.price | currency: 'R': 'symbol':'1.2-2' }}</td>
+        <td>{{ getProductBrandName(product.brandId) }}</td>
+        <td>{{ getProductTypeName(product.productTypeId) }}</td>
+        <td>{{ product.description }}</td>
+      </tr>
+    </tbody>
+  </table>
 
-     <div>
-       <label>Items per page:</label>
-       <select [(ngModel)]="pageSize" (change)="onPageSizeChanged()">
-         <option *ngFor="let option of pageSizeOptions" [value]="option">{{ option }}</option>
-       </select>
-     </div>
+  <div class="pagination-container">
 
-     <pagination-controls
-       [(ngModel)]="currentPage"
-       [itemsPerPage]="pageSize"
-       [totalItems]="totalItems"
-       (pageChange)="onPageChanged($event)"
-     ></pagination-controls>
-   </div>
+    <div>
+      <label>Items per page:</label>
+      <select [(ngModel)]="pageSize" name="fieldName" ngDefaultControl (change)="onPageSizeChanged()">
+        <option *ngFor="let option of pageSizeOptions" [value]="option">{{ option }}</option>
+      </select>
+    </div>
+
+    <div class="pagination">
+      <pagination-controls
+        [(ngModel)]="currentPage" 
+        name="fieldName"
+        ngDefaultControl
+        [maxSize]="5"
+        [directionLinks]="true"
+        [autoHide]="false"
+        (pageChange)="onPageChanged($event)"
+      ></pagination-controls>
+    </div>
+  </div>
+  
+  
+
+
+  
+
+  <!-- <pagination-controls
+    [(ngModel)]="currentPage" name="fieldName" ngDefaultControl
+    [maxSize]="5"
+    [directionLinks]="true"
+    [autoHide]="false"
+    (pageChange)="onPageChanged($event)"
+  ></pagination-controls> -->
+</div>
+
+<router-outlet></router-outlet>
+

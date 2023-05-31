@@ -23,10 +23,20 @@ namespace Assignment3_Backend.Controllers
 
         // POST: api/store/addproduct
         [HttpPost("addproduct")]
-        public ActionResult<Product> AddProduct([FromBody] Product product)
+        public ActionResult<Product> AddProduct([FromBody] ProductViewModel productViewModel)
         {
             try
             {
+                // Map the properties from the view model to the Product model
+                var product = new Product
+                {
+                    Price = productViewModel.price,
+                    ProductTypeId = productViewModel.producttype,
+                    BrandId = productViewModel.brand,
+                    Description = productViewModel.description,
+                    Name = productViewModel.name
+                };
+
                 _context.Products.Add(product);
                 _context.SaveChanges();
 
@@ -38,6 +48,7 @@ namespace Assignment3_Backend.Controllers
                 return StatusCode(500, "An error occurred while creating the product.");
             }
         }
+
 
 
 

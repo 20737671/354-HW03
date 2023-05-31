@@ -1,0 +1,19 @@
+<mat-toolbar class="navbar" color="primary">
+    <!-- Add your desired content here -->
+  </mat-toolbar>
+  
+
+
+<div class="sidebar-container" [ngClass]="{ 'expanded': isExpanded, 'collapsed': !isExpanded }">
+    <mat-toolbar color="primary" class="sidebar-toolbar">
+        <button mat-icon-button class="menu-button" (click)="toggleSidebar()">
+            <mat-icon>{{ isExpanded ? 'Menu' : 'Menu' }}</mat-icon>
+          </button>          
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="'/listing'">Prouct Listing</a>
+      <a mat-list-item [routerLink]="'/add-product'">Add Product</a>
+      <a mat-list-item [routerLink]="'/login'">Logout</a>
+    </mat-nav-list>
+  </div>
+  
